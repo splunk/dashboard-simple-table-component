@@ -1,0 +1,31 @@
+{
+  "name": "@splunk/dashboard-tutorial-1",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "build": "lerna run build",
+    "format": "git ls-files | grep -E \"\\.(jsx?|css)$\" | xargs prettier --write",
+    "format:verify": "git ls-files | grep -E \"\\.(jsx?|css)$\" | xargs prettier --list-different",
+    "lint": "lerna run lint --no-sort",
+    "setup": "yarn && lerna run build",
+    "start": "lerna run start --stream --no-sort --concurrency 100",
+    "test": "lerna run test --stream --no-sort"
+  },
+  "devDependencies": {
+    "lerna": "^2.9.0",
+    "prettier": "^2.0.5"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=8"
+  },
+  "dependencies": {
+    "@splunk/dashboard-context": "^23.1.0",
+    "@splunk/dashboard-core": "^23.1.0",
+    "@splunk/dashboard-presets": "^23.1.0",
+    "@splunk/dashboard-visualizations": "^23.1.0",
+    "@splunk/visualizations": "^23.3.0"
+  }
+}

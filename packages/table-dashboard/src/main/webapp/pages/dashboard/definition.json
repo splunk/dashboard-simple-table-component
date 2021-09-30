@@ -1,0 +1,323 @@
+{
+	"visualizations": {
+		"viz_HTax1jMU": {
+			"type": "splunk.table",
+			"dataSources": {
+				"primary": "ds_test"
+			},
+			"title": "Table With Sparkline"
+		},
+		"viz_GdqnufJw": {
+			"type": "splunk.CustomTable",
+			"options": {}
+		},
+		"viz_4W6eyTn0": {
+			"type": "splunk.area",
+			"dataSources": {
+				"primary": "test2"
+			}
+		},
+		"viz_S69EHIex": {
+			"type": "splunk.bubble",
+			"dataSources": {
+				"primary": "test3"
+			},
+			"options": {},
+			"context": {},
+			"showProgressBar": false,
+			"showLastUpdated": false
+		}
+	},
+	"dataSources": {
+		"ds_YJJcuTcJ": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "-15m",
+					"latest": "now"
+				},
+				"query": "index=_internal \n| chart count sparkline by sourcetype"
+			},
+			"name": "Search_1"
+		},
+		"ds_test": {
+			"type": "ds.test",
+			"options": {
+				"data": {
+					"fields": [
+						{
+							"name": "User"
+						},
+						{
+							"name": "Total Logins"
+						},
+						{
+							"name": "Logins Last Week"
+						}
+					],
+					"columns": [
+						[
+							"userA",
+							"userB",
+							"userC",
+							"userD"
+						],
+						[
+							"10",
+							"20",
+							"30",
+							"40"
+						],
+						[
+							[
+								"##__SPARKLINE__##",
+								"1",
+								"0",
+								"0",
+								"2",
+								"3",
+								"4",
+								"0"
+							],
+							[
+								"##__SPARKLINE__##",
+								"0",
+								"4",
+								"2",
+								"5",
+								"3",
+								"6",
+								"0"
+							],
+							[
+								"##__SPARKLINE__##",
+								"5",
+								"2",
+								"5",
+								"4",
+								"6",
+								"2",
+								"6"
+							],
+							[
+								"##__SPARKLINE__##",
+								"7",
+								"5",
+								"8",
+								"6",
+								"6",
+								"8",
+								"10"
+							]
+						]
+					]
+				}
+			}
+		},
+		"test2": {
+			"type": "ds.test",
+			"name": "test2",
+			"options": {
+				"data": {
+					"fields": [
+						{
+							"name": "time"
+						},
+						{
+							"name": "count"
+						}
+					],
+					"columns": [
+						[
+							1,
+							2,
+							3,
+							4,
+							5,
+							6,
+							7,
+							8,
+							9,
+							10,
+							11,
+							12,
+							13,
+							14,
+							15,
+							16,
+							17,
+							18,
+							19,
+							20
+						],
+						[
+							866,
+							1020,
+							1096,
+							1738,
+							1063,
+							866,
+							1201,
+							1227,
+							972,
+							870,
+							569,
+							836,
+							867,
+							866,
+							866,
+							997,
+							866,
+							1263,
+							867,
+							868
+						]
+					]
+				}
+			}
+		},
+		"test3": {
+			"type": "ds.test",
+			"name": "test3",
+			"options": {
+				"data": {
+					"fields": [
+						{
+							"name": "time"
+						},
+						{
+							"name": "count"
+						},
+						{
+							"name": "count2"
+						}
+					],
+					"columns": [
+						[
+							1,
+							2,
+							3,
+							4,
+							5,
+							6,
+							7,
+							8,
+							9,
+							10,
+							11,
+							12,
+							13,
+							14,
+							15,
+							16,
+							17,
+							18,
+							19,
+							20
+						],
+						[
+							866,
+							1020,
+							1096,
+							1738,
+							1063,
+							866,
+							1201,
+							1227,
+							972,
+							870,
+							569,
+							836,
+							867,
+							866,
+							866,
+							997,
+							866,
+							1263,
+							867,
+							868
+						],
+						[
+							866,
+							1020,
+							1096,
+							1738,
+							1063,
+							866,
+							1201,
+							1227,
+							972,
+							870,
+							569,
+							836,
+							867,
+							866,
+							866,
+							997,
+							866,
+							1263,
+							867,
+							868
+						]
+					]
+				}
+			}
+		}
+	},
+	"defaults": {},
+	"inputs": {},
+	"layout": {
+		"type": "absolute",
+		"options": {
+			"display": "auto-scale",
+			"width": 1440,
+			"height": 1024,
+			"backgroundColor": "#000000"
+		},
+		"structure": [
+			{
+				"item": "viz_HTax1jMU",
+				"type": "block",
+				"position": {
+					"x": 50,
+					"y": 40,
+					"w": 630,
+					"h": 330
+				}
+			},
+			{
+				"item": "viz_GdqnufJw",
+				"type": "block",
+				"position": {
+					"x": 720,
+					"y": 40,
+					"w": 630,
+					"h": 330
+				}
+			},
+			{
+				"item": "viz_4W6eyTn0",
+				"type": "block",
+				"position": {
+					"x": 50,
+					"y": 440,
+					"w": 630,
+					"h": 320
+				}
+			},
+			{
+				"item": "viz_S69EHIex",
+				"type": "block",
+				"position": {
+					"x": 720,
+					"y": 440,
+					"w": 630,
+					"h": 320
+				}
+			}
+		],
+		"globalInputs": []
+	},
+	"description": "",
+	"title": "Custom Sparkline In Table"
+}
