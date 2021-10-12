@@ -12,20 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License. */
 
-import React from 'react'
-import AreaInTable from '@splunk/custom-table'
-import SplunkVisualization from '@splunk/visualizations/common/SplunkVisualization'
+import React from 'react';
+import AreaInTable from '@splunk/custom-table';
+import SplunkVisualization from '@splunk/visualizations/common/SplunkVisualization';
 
-const CustomTable = ({dataSource,width,height,background='transparent',title,description,options})=>
-{
-    return(<AreaInTable/>);
+const CustomTable = ({
+    dataSource,
+    width,
+    height,
+    background = 'transparent',
+    title,
+    description,
+    options,
+}) => {
+    return <AreaInTable />;
 };
 
-CustomTable.propTypes ={
+CustomTable.propTypes = {
     ...SplunkVisualization.propTypes,
 };
 
-CustomTable.defaultProps ={
+CustomTable.defaultProps = {
     ...SplunkVisualization.defaultProps,
 };
 
