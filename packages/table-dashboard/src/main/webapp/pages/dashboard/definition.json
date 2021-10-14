@@ -5,27 +5,30 @@
 			"dataSources": {
 				"primary": "ds_test"
 			},
-			"title": "Table With Sparkline"
+			"title": "Default Table from Splunk Visualizations",
+			"description": "Static Data for User Logins"
 		},
 		"viz_GdqnufJw": {
-			"type": "splunk.CustomTable",
+			"type": "splunk.CustomMap",
 			"options": {}
 		},
-		"viz_4W6eyTn0": {
-			"type": "splunk.area",
-			"dataSources": {
-				"primary": "test2"
+		"viz_QOgtt0Bp": {
+			"type": "splunk.markdown",
+			"options": {
+				"markdown": "## Adding Custom Components to Dashboards "
 			}
 		},
-		"viz_S69EHIex": {
-			"type": "splunk.bubble",
-			"dataSources": {
-				"primary": "test3"
-			},
-			"options": {},
-			"context": {},
-			"showProgressBar": false,
-			"showLastUpdated": false
+		"viz_aZS6Z1Gu": {
+			"type": "splunk.markdown",
+			"options": {
+				"markdown": "This dashboard displays both a regular Splunk Table Visualization on the left, and a table made by using a custom Splunk UI component on the right added to the dashboard by making a custom visualization."
+			}
+		},
+		"viz_6hGmfpvq": {
+			"type": "splunk.markdown",
+			"options": {
+				"markdown": "**Custom visualization using Splunk UI and Visualizations Library**\n\nStatic Data for User Logins\n\n"
+			}
 		}
 	},
 	"dataSources": {
@@ -36,7 +39,7 @@
 					"earliest": "-15m",
 					"latest": "now"
 				},
-				"query": "index=_internal \n| chart count sparkline by sourcetype"
+				"query": "| makeresults count=15\n| streamstats count\n| eval \"United States\"=(random() % 25 + 55)\n| eval Canada=(random() % 15 + 60)\n| eval \"United Kingdom\"=(random() % 20 + 60)\n| eval _time=_time-(count*2700000) \n| fields _time, \"United States\", Canada, \"United Kingdom\""
 			},
 			"name": "Search_1"
 		},
@@ -262,6 +265,17 @@
 					]
 				}
 			}
+		},
+		"ds_voLfUOUK": {
+			"type": "ds.search",
+			"options": {
+				"queryParameters": {
+					"earliest": "-24h@h",
+					"latest": "now"
+				},
+				"query": "| makeresults \n| eval month=\"Nov\" \n| eval MacOS=\"5000\" \n| eval Windows = \"3000\"\n| append \n    [| makeresults \n| eval month=\"Dec\" \n| eval MacOS=\"4700\" \n| eval Windows = \"3200\"]\n| append \n    [| makeresults \n| eval month=\"Jan\" \n| eval MacOS=\"4700\" \n| eval Windows = \"4100\"]\n| append \n    [| makeresults \n| eval month=\"Feb\" \n| eval MacOS=\"3700\" \n| eval Windows = \"2800\"]\n| append \n    [| makeresults \n| eval month=\"Mar\" \n| eval MacOS=\"2200\" \n| eval Windows = \"6000\"]\n| append \n    [| makeresults \n| eval month=\"Apr\" \n| eval MacOS=\"1900\" \n| eval Windows = \"7000\"]\n| append \n[| makeresults \n| eval month=\"May\" \n| eval MacOS=\"3200\" \n| eval Windows = \"6000\"]\n[| makeresults \n| eval month=\"June\" \n| eval MacOS=\"3200\" \n| eval Windows = \"6000\"]\n| table month MacOS Windows"
+			},
+			"name": "Search_2"
 		}
 	},
 	"defaults": {},
@@ -279,8 +293,8 @@
 				"item": "viz_HTax1jMU",
 				"type": "block",
 				"position": {
-					"x": 50,
-					"y": 40,
+					"x": 30,
+					"y": 140,
 					"w": 630,
 					"h": 330
 				}
@@ -290,34 +304,44 @@
 				"type": "block",
 				"position": {
 					"x": 720,
-					"y": 40,
+					"y": 190,
 					"w": 630,
-					"h": 330
+					"h": 270
 				}
 			},
 			{
-				"item": "viz_4W6eyTn0",
+				"item": "viz_QOgtt0Bp",
 				"type": "block",
 				"position": {
-					"x": 50,
-					"y": 440,
+					"x": 20,
+					"y": 0,
 					"w": 630,
-					"h": 320
+					"h": 90
 				}
 			},
 			{
-				"item": "viz_S69EHIex",
+				"item": "viz_aZS6Z1Gu",
+				"type": "block",
+				"position": {
+					"x": 20,
+					"y": 70,
+					"w": 1380,
+					"h": 40
+				}
+			},
+			{
+				"item": "viz_6hGmfpvq",
 				"type": "block",
 				"position": {
 					"x": 720,
-					"y": 440,
-					"w": 630,
-					"h": 320
+					"y": 120,
+					"w": 1380,
+					"h": 70
 				}
 			}
 		],
 		"globalInputs": []
 	},
 	"description": "",
-	"title": "Custom Sparkline In Table"
+	"title": "Custom Components Dashboard"
 }

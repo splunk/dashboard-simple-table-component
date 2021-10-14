@@ -24,16 +24,18 @@ const customPreset = {
 };
 
 const DashboardExample = () => {
-    <SplunkThemeProvider {...themeToVariant.prisma}>
-        <DashboardContextProvider>
-            <DashboardCore
-                width="100%"
-                height="100%"
-                preset={customPreset}
-                definition={definition}
-            />
-        </DashboardContextProvider>
-    </SplunkThemeProvider>;
+    return (
+        <SplunkThemeProvider {...themeToVariant.prisma}>
+            <DashboardContextProvider>
+                <DashboardCore
+                    width="100%"
+                    height="100%"
+                    preset={customPreset}
+                    definition={definition}
+                />
+            </DashboardContextProvider>
+        </SplunkThemeProvider>
+    );
 };
 
 export default DashboardExample;
