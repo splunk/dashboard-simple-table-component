@@ -7,27 +7,6 @@ import SplunkThemeProvider from '@splunk/themes/SplunkThemeProvider';
 class AreaInTable extends Component {
     constructor(props, ...rest) {
         super(props, ...rest);
-        /*
-        showTooltip: true,
-        isArea: true,
-        showEndDot: true,
-        endDotFillColor: 'white',
-        endDotRadius: 3,
-        endDotStroke: 'black',
-        endDotStrokeWidth: 2,
-        endDotCount: 0,
-        fillColor: '#65a637',
-        fillOpacity: 0.1,
-        cursorStroke: '#f7912c',
-        cursorStrokeWidth: 3,
-        cursorStrokeLinecap: 'square',
-        cursorStrokeDasharray: '1,5',
-        height: 50,
-        lineColor: '#6cb8ca',
-        lineStrokeWidth: 4,
-        lineLength: 10,
-        width: 240,
-        */
 
         this.state = {
             data: [
