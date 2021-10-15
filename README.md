@@ -1,3 +1,9 @@
+# Dashboard Tutorial 1
+
+This project is part of the Splunk Web Platform tutorial series regarding the Splunk Dashboard Framework. In the first installment, we cover how to add a Splunk UI component as a custom visualization into a Splunk Dashboard.
+
+![](packages/table-dashboard/src/main/webapp/pages/dashboard/final_dashboard.png)
+
 # License Notice
 Copyright 2021 Splunk, Inc.
 
@@ -56,4 +62,3 @@ For more granular control of development scripts, consider using [Lerna](https:/
 
 DashboardTutorial1 uses [prettier](https://github.com/prettier/prettier) to ensure consistent code formatting. It is recommended
  to [add a prettier plugin to your editor/ide](https://github.com/prettier/prettier#editor-integration).
-# dashboard-tutorial-1
