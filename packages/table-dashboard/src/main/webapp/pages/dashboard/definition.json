@@ -9,7 +9,7 @@
 			"description": "Static Data for User Logins"
 		},
 		"viz_GdqnufJw": {
-			"type": "splunk.CustomMap",
+			"type": "splunk.CustomTable",
 			"options": {}
 		},
 		"viz_QOgtt0Bp": {
