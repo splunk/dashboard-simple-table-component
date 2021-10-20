@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { cloneDeep } from 'lodash';
-
 import Table from '@splunk/react-ui/Table';
 import Line from '@splunk/react-sparkline/Line';
+import SplunkVisualization from '@splunk/visualizations/common/SplunkVisualization';
+import { cloneDeep } from 'lodash';
+
 import SplunkThemeProvider from '@splunk/themes/SplunkThemeProvider';
-class AreaInTable extends Component {
-    constructor(props, ...rest) {
-        super(props, ...rest);
+
+class CustomTable extends Component {
+    constructor(props) {
+        super(props);
 
         this.state = {
             data: [
@@ -26,7 +28,8 @@ class AreaInTable extends Component {
             const insertionIndex = toIndex < fromIndex ? toIndex : toIndex + 1;
             data.splice(insertionIndex, 0, rowToMove);
 
-            const removalIndex = toIndex < fromIndex ? fromIndex + 1 : fromIndex;
+            const removalIndex =
+                toIndex < fromIndex ? fromIndex + 1 : fromIndex;
             data.splice(removalIndex, 1);
 
             return { data };
@@ -38,12 +41,21 @@ class AreaInTable extends Component {
         return (
             <div>
                 <div>
-                    <SplunkThemeProvider family="prisma" colorScheme="dark" density="comfortable">
-                        <Table stripeRows onRequestMoveRow={this.handleRequestMoveRow}>
+                    <SplunkThemeProvider
+                        family="prisma"
+                        colorScheme="dark"
+                        density="comfortable"
+                    >
+                        <Table
+                            stripeRows
+                            onRequestMoveRow={this.handleRequestMoveRow}
+                        >
                             <Table.Head>
                                 <Table.HeadCell>User</Table.HeadCell>
                                 <Table.HeadCell>Total Logins</Table.HeadCell>
-                                <Table.HeadCell>Logins Last Week</Table.HeadCell>
+                                <Table.HeadCell>
+                                    Logins Last Week
+                                </Table.HeadCell>
                             </Table.Head>
                             <Table.Body>
                                 {data.map((row) => (
@@ -53,22 +65,22 @@ class AreaInTable extends Component {
                                         <Table.Cell>
                                             <Line
                                                 data={row.logins}
-                                                showTooltip={true}
-                                                showEndDot={true}
+                                                showTooltip
+                                                showEndDot
                                                 endDotCount={0}
                                                 endDotRadius={3}
-                                                endDotFillColor={'white'}
-                                                endDotStroke={'black'}
+                                                endDotFillColor="white"
+                                                endDotStroke="black"
                                                 endDotStrokeWidth={2}
-                                                fillColor={'#f7912c'}
-                                                fillOpacity={`${0.2}`}
+                                                fillColor="#f7912c"
+                                                fillOpacity="0.2"
                                                 height={50}
-                                                isArea={true}
-                                                cursorStroke={'#f7912c'}
+                                                isArea
+                                                cursorStroke="#f7912c"
                                                 cursorStrokeWidth={3}
-                                                cursorStrokeLinecap={'square'}
-                                                cursorStrokeDasharray={'1,5'}
-                                                lineColor={'#6cb8ca'}
+                                                cursorStrokeLinecap="square"
+                                                cursorStrokeDasharray="1,5"
+                                                lineColor="#6cb8ca"
                                                 lineStrokeWidth={4}
                                                 lineLength={10}
                                                 width={240}
@@ -85,4 +97,12 @@ class AreaInTable extends Component {
     }
 }
 
-export default AreaInTable;
+CustomTable.propTypes = {
+    ...SplunkVisualization.propTypes,
+};
+
+CustomTable.defaultProps = {
+    ...SplunkVisualization.defaultProps,
+};
+
+export default CustomTable;

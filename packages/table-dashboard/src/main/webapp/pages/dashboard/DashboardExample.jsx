@@ -1,11 +1,11 @@
 import React from 'react';
 
-import DashboardCore, { themes as dashboardCoreThemes } from '@splunk/dashboard-core';
+import DashboardCore from '@splunk/dashboard-core';
 import { DashboardContextProvider } from '@splunk/dashboard-context';
 import EnterpriseViewOnlyPreset from '@splunk/dashboard-presets/EnterpriseViewOnlyPreset';
 import SplunkThemeProvider from '@splunk/themes/SplunkThemeProvider';
 
-import CustomTable from './tableViz';
+import CustomTable from '@splunk/custom-table';
 import definition from './definition.json';
 
 const themeToVariant = {
@@ -13,8 +13,8 @@ const themeToVariant = {
     enterpriseDark: { colorScheme: 'dark', family: 'enterprise' },
     prisma: { colorScheme: 'dark', family: 'prisma' },
 };
-// use DashboardCore to render a simple dashboard
 
+// use DashboardCore to render a simple dashboard
 const customPreset = {
     ...EnterpriseViewOnlyPreset,
     visualizations: {
