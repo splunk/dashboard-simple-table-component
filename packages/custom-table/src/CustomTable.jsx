@@ -1,28 +1,57 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Table from '@splunk/react-ui/Table';
 import Line from '@splunk/react-sparkline/Line';
 import SplunkVisualization from '@splunk/visualizations/common/SplunkVisualization';
+import SplunkThemeProvider from '@splunk/themes/SplunkThemeProvider';
 import { cloneDeep } from 'lodash';
 
-import SplunkThemeProvider from '@splunk/themes/SplunkThemeProvider';
+// Convert sparkline data from the datasource a format usable by the @splunk/react-sparkline component
+const formatSparklineData = (data) => {
+    return data.slice(1).map((val) => parseInt(val, 10));
+};
 
-class CustomTable extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            data: [
-                { User: 'userA', tl: 10, logins: [1, 0, 0, 2, 3, 4, 0] },
-                { User: 'userB', tl: 20, logins: [0, 4, 2, 5, 3, 6, 0] },
-                { User: 'userC', tl: 30, logins: [5, 2, 5, 4, 6, 2, 6] },
-                { User: 'userD', tl: 40, logins: [7, 5, 8, 6, 6, 8, 10] },
-            ],
+// Extract data from the datasource a format usable by the table
+const formatData = (dataSources) => {
+    if (!dataSources.primary.data) {
+        return {
+            fields: [],
+            data: [],
         };
     }
 
-    handleRequestMoveRow = ({ fromIndex, toIndex }) => {
-        this.setState((state) => {
-            const data = cloneDeep(state.data);
+    // Get the names of the fields
+    const fields = dataSources.primary.data.fields.map((f) => f.name);
+    const data = [];
+
+    // Convert the data from column to row form
+    dataSources.primary.data.columns.forEach((col, i) => {
+        col.forEach((item, j) => {
+            if (!data[j]) {
+                data.push({});
+            }
+            data[j][fields[i].replace(/\s/g, '')] =
+                fields[i] === 'Logins Last Week'
+                    ? formatSparklineData(item)
+                    : item;
+        });
+    });
+
+    return { fields, data };
+};
+
+const CustomTable = ({ options, dataSources }) => {
+    const [tableData, setTableData] = useState(formatData(dataSources));
+
+    useEffect(() => {
+        setTableData(formatData(dataSources));
+    }, [dataSources]);
+
+    const handleRequestMoveRow = useCallback(
+        ({ fromIndex, toIndex }) => {
+            if (!tableData) {
+                return;
+            }
+            const data = cloneDeep(tableData.data);
             const rowToMove = data[fromIndex];
 
             const insertionIndex = toIndex < fromIndex ? toIndex : toIndex + 1;
@@ -32,70 +61,57 @@ class CustomTable extends Component {
                 toIndex < fromIndex ? fromIndex + 1 : fromIndex;
             data.splice(removalIndex, 1);
 
-            return { data };
-        });
-    };
+            setTableData({
+                fields: tableData.fields,
+                data,
+            });
+        },
+        [tableData]
+    );
 
-    render() {
-        const { data } = this.state;
-        return (
+    return (
+        <div>
             <div>
-                <div>
-                    <SplunkThemeProvider
-                        family="prisma"
-                        colorScheme="dark"
-                        density="comfortable"
-                    >
-                        <Table
-                            stripeRows
-                            onRequestMoveRow={this.handleRequestMoveRow}
-                        >
-                            <Table.Head>
-                                <Table.HeadCell>User</Table.HeadCell>
-                                <Table.HeadCell>Total Logins</Table.HeadCell>
-                                <Table.HeadCell>
-                                    Logins Last Week
+                <SplunkThemeProvider
+                    family="prisma"
+                    colorScheme="dark"
+                    density="comfortable"
+                >
+                    <Table onRequestMoveRow={handleRequestMoveRow}>
+                        <Table.Head>
+                            {tableData.fields.map((field) => (
+                                <Table.HeadCell key={field}>
+                                    {field}
                                 </Table.HeadCell>
-                            </Table.Head>
-                            <Table.Body>
-                                {data.map((row) => (
-                                    <Table.Row key={row.User}>
-                                        <Table.Cell>{row.User}</Table.Cell>
-                                        <Table.Cell>{row.tl}</Table.Cell>
-                                        <Table.Cell>
-                                            <Line
-                                                data={row.logins}
-                                                showTooltip
-                                                showEndDot
-                                                endDotCount={0}
-                                                endDotRadius={3}
-                                                endDotFillColor="white"
-                                                endDotStroke="black"
-                                                endDotStrokeWidth={2}
-                                                fillColor="#f7912c"
-                                                fillOpacity="0.2"
-                                                height={50}
-                                                isArea
-                                                cursorStroke="#f7912c"
-                                                cursorStrokeWidth={3}
-                                                cursorStrokeLinecap="square"
-                                                cursorStrokeDasharray="1,5"
-                                                lineColor="#6cb8ca"
-                                                lineStrokeWidth={4}
-                                                lineLength={10}
-                                                width={240}
-                                            />
-                                        </Table.Cell>
-                                    </Table.Row>
-                                ))}
-                            </Table.Body>
-                        </Table>
-                    </SplunkThemeProvider>
-                </div>
+                            ))}
+                        </Table.Head>
+                        <Table.Body>
+                            {tableData.data.map((row) => (
+                                <Table.Row key={row.User}>
+                                    <Table.Cell>{row.User}</Table.Cell>
+                                    <Table.Cell>{row.TotalLogins}</Table.Cell>
+                                    <Table.Cell>
+                                        <Line
+                                            data={row.LoginsLastWeek}
+                                            {...options}
+                                        />
+                                    </Table.Cell>
+                                </Table.Row>
+                            ))}
+                        </Table.Body>
+                    </Table>
+                </SplunkThemeProvider>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
+
+CustomTable.config = {
+    dataContract: {},
+    optionsSchema: {},
+    key: 'splunk.CustomTable',
+    name: 'CustomTable',
+};
 
 CustomTable.propTypes = {
     ...SplunkVisualization.propTypes,
