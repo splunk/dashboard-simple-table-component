@@ -1,13 +1,3 @@
-import DocExample from '@splunk/react-docs/DocExample';
-import Code from '@splunk/react-ui/Code';
-import definition from './examples/tutorial1/definition.json';
-import definitionFinal from './examples/tutorial1/definitionFinal.json';
-import indexCode from '!!raw-loader!./examples/tutorial1/index';
-import CustomTableCode from '!!raw-loader!./examples/tutorial1/CustomTable';
-import { default as DashboardExampleInitial } from './examples/tutorial1/DashboardExample';
-import DashboardExampleInitialCode from '!!raw-loader!./examples/tutorial1/DashboardExample';
-import { default as DashboardExampleFinal } from './examples/tutorial1/DashboardExampleFinal';
-import DashboardExampleFinalCode from '!!raw-loader!./examples/tutorial1/DashboardExampleFinal';
 
 # Getting Started with Dashboards: Adding a Component
 
