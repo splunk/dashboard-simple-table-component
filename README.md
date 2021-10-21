@@ -1,6 +1,8 @@
 # Dashboard Tutorial 1
 
-This project is part of the Splunk Web Platform tutorial series regarding the Splunk Dashboard Framework. In the first installment, we cover how to add a Splunk UI component as a custom visualization into a Splunk Dashboard.
+This project is part of the Splunk Web Platform tutorial series regarding the Splunk Dashboard Framework. In the first installment, we cover how to add a Splunk UI component as a custom visualization into a Splunk Dashboard. 
+
+Be sure to check out tutorial.md for a step by step process to make this project!
 
 ![](packages/table-dashboard/src/main/webapp/pages/dashboard/final_dashboard.png)
 
