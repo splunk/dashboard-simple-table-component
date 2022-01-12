@@ -9,4 +9,4 @@ yarn-error.log
 licenses.json
 functional-temp
 splunktional-temp
-yarn.lock
+yarn-error.log
