@@ -1,0 +1,22 @@
+version: 2
+updates:
+- package-ecosystem: "npm"
+  directory: "/"
+  schedule:
+    interval: "weekly"
+  allow:
+    - dependency-type: "direct"
+
+- package-ecosystem: "npm"
+  directory: "/packages/custom-table"
+  schedule:
+    interval: "weekly"
+  allow:
+    - dependency-type: "direct"
+
+- package-ecosystem: "npm"
+  directory: "/packages/table-dashboard"
+  schedule:
+    interval: "weekly"
+  allow:
+    - dependency-type: "direct"
