@@ -21,7 +21,7 @@
   "main": "CustomTable.js",
   "dependencies": {
     "@splunk/react-ui": "^4.2.0",
-    "@splunk/themes": "^0.8.0"
+    "@splunk/themes": "^0.10.1"
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",
@@ -45,7 +45,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^25.1.0",
-    "jest-junit": "^10.0.0",
+    "jest-junit": "^13.2.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-test-renderer": "^16.12.0",
