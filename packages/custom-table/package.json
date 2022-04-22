@@ -21,7 +21,7 @@
   "main": "CustomTable.js",
   "dependencies": {
     "@splunk/react-ui": "^4.2.0",
-    "@splunk/themes": "^0.8.0"
+    "@splunk/themes": "^0.10.1"
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",
@@ -54,7 +54,7 @@
     "webpack": "^4.16.2",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5",
-    "webpack-merge": "^4.1.3"
+    "webpack-merge": "^5.8.0"
   },
   "peerDependencies": {
     "react": "^16.8",
