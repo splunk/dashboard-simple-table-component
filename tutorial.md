@@ -326,7 +326,7 @@ Now that we have the code in place, let's do a test run before we dive into the 
 
 ```bash
 $ cd dashboardTutorial1/packages/table-dashboard # (if not in the app root already)
-$ yarn add @splunk/dashboard-core @splunk/dashboard-presets @splunk/dashboard-context
+$ yarn add @splunk/dashboard-core @splunk/dashboard-presets @splunk/dashboard-context @splunk/visualization-context
 $ cd ../.. # going back to project root
 $ yarn install #to install all other dependencies
 $ yarn run build
