@@ -21,11 +21,5 @@
   "engines": {
     "node": ">=8"
   },
-  "dependencies": {
-    "@splunk/dashboard-context": "^23.3.0",
-    "@splunk/dashboard-core": "^23.3.0",
-    "@splunk/dashboard-presets": "^23.3.0",
-    "@splunk/dashboard-visualizations": "^24.4.0",
-    "@splunk/visualizations": "^23.5.0"
-  }
+  "dependencies": {}
 }
