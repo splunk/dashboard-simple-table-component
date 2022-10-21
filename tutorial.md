@@ -270,15 +270,16 @@ const themeToVariant = {
 };
 
 // use DashboardCore to render a simple dashboard
+// NOTICE: If you are on Dashboard Core versions LOWER than 25.X.X, preset will be a prop for <DashboardCore> instead of 
+// <DashboardContextProvider>
 
 const DashboardExample = () => {
     return (
         <SplunkThemeProvider {...themeToVariant.prisma}>
-            <DashboardContextProvider>
+            <DashboardContextProvider preset={EnterpriseViewOnlyPreset}>
                 <DashboardCore
                     width="100%"
                     height="100%"
-                    preset={EnterpriseViewOnlyPreset}
                     definition={definition}
                 />
             </DashboardContextProvider>
