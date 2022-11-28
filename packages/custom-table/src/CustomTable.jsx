@@ -12,7 +12,7 @@ const formatSparklineData = (data) => {
 
 // Extract data from the datasource a format usable by the table
 const formatData = (dataSources) => {
-    if (!dataSources.primary.data) {
+    if (!dataSources?.primary?.data) {
         return {
             fields: [],
             data: [],
@@ -30,9 +30,7 @@ const formatData = (dataSources) => {
                 data.push({});
             }
             data[j][fields[i].replace(/\s/g, '')] =
-                fields[i] === 'Logins Last Week'
-                    ? formatSparklineData(item)
-                    : item;
+                fields[i] === 'Logins Last Week' ? formatSparklineData(item) : item;
         });
     });
 
@@ -57,8 +55,7 @@ const CustomTable = ({ options, dataSources }) => {
             const insertionIndex = toIndex < fromIndex ? toIndex : toIndex + 1;
             data.splice(insertionIndex, 0, rowToMove);
 
-            const removalIndex =
-                toIndex < fromIndex ? fromIndex + 1 : fromIndex;
+            const removalIndex = toIndex < fromIndex ? fromIndex + 1 : fromIndex;
             data.splice(removalIndex, 1);
 
             setTableData({
@@ -72,17 +69,11 @@ const CustomTable = ({ options, dataSources }) => {
     return (
         <div>
             <div>
-                <SplunkThemeProvider
-                    family="prisma"
-                    colorScheme="dark"
-                    density="comfortable"
-                >
+                <SplunkThemeProvider family="prisma" colorScheme="dark" density="comfortable">
                     <Table onRequestMoveRow={handleRequestMoveRow}>
                         <Table.Head>
                             {tableData.fields.map((field) => (
-                                <Table.HeadCell key={field}>
-                                    {field}
-                                </Table.HeadCell>
+                                <Table.HeadCell key={field}>{field}</Table.HeadCell>
                             ))}
                         </Table.Head>
                         <Table.Body>
@@ -91,10 +82,7 @@ const CustomTable = ({ options, dataSources }) => {
                                     <Table.Cell>{row.User}</Table.Cell>
                                     <Table.Cell>{row.TotalLogins}</Table.Cell>
                                     <Table.Cell>
-                                        <Line
-                                            data={row.LoginsLastWeek}
-                                            {...options}
-                                        />
+                                        <Line data={row.LoginsLastWeek} {...options} />
                                     </Table.Cell>
                                 </Table.Row>
                             ))}
