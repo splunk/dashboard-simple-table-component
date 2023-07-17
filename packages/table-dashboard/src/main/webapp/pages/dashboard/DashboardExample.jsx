@@ -1,6 +1,6 @@
 import React from 'react';
 
-import DashboardCore from '@splunk/dashboard-core';
+import { DashboardCore } from '@splunk/dashboard-core';
 import { DashboardContextProvider } from '@splunk/dashboard-context';
 import EnterpriseViewOnlyPreset from '@splunk/dashboard-presets/EnterpriseViewOnlyPreset';
 import SplunkThemeProvider from '@splunk/themes/SplunkThemeProvider';
@@ -26,13 +26,8 @@ const customPreset = {
 const DashboardExample = () => {
     return (
         <SplunkThemeProvider {...themeToVariant.prisma}>
-            <DashboardContextProvider>
-                <DashboardCore
-                    width="100%"
-                    height="100%"
-                    preset={customPreset}
-                    definition={definition}
-                />
+            <DashboardContextProvider preset={customPreset} initialDefinition={definition}>
+                <DashboardCore width="100%" height="100%" />
             </DashboardContextProvider>
         </SplunkThemeProvider>
     );

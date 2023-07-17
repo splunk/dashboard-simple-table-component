@@ -257,7 +257,7 @@ The last piece of the actual dashboard is to write the JavaScript that will actu
 ```jsx
 import React from 'react';
 
-import DashboardCore from '@splunk/dashboard-core';
+import { DashboardCore } from '@splunk/dashboard-core';
 import { DashboardContextProvider } from '@splunk/dashboard-context';
 import EnterpriseViewOnlyPreset from '@splunk/dashboard-presets/EnterpriseViewOnlyPreset';
 import SplunkThemeProvider from '@splunk/themes/SplunkThemeProvider';
@@ -276,11 +276,13 @@ const themeToVariant = {
 const DashboardExample = () => {
     return (
         <SplunkThemeProvider {...themeToVariant.prisma}>
-            <DashboardContextProvider preset={EnterpriseViewOnlyPreset}>
+            <DashboardContextProvider 
+                preset={EnterpriseViewOnlyPreset}
+                initialDefinition={definition}
+            >
                 <DashboardCore
                     width="100%"
                     height="100%"
-                    definition={definition}
                 />
             </DashboardContextProvider>
         </SplunkThemeProvider>
